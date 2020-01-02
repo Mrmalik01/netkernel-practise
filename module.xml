@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module version="2.0">
+    <meta>
+        <identity>
+            <uri>urn:org:netkernelbook:chapter1:firstmodule</uri>
+            <version>1.0.0</version>
+        </identity>
+        <info>
+            <name>First Module</name>
+            <description>Netkernel Chapter 1 First Module</description>
+        </info>
+    </meta>
+
+    <system>
+        <dynamic />
+    </system>
+
+    <rootspace name="First Module - Services" public="true" uri="urn:org:netkernelbook:chapter1:firstmodule:services">
+        <fileset>
+            <regex>res:/etc/system/SimpleDynamicImportHook.xml</regex>
+        </fileset>
+        <mapper>
+            <config>
+                <endpoint>
+                    <id>firstmodule:helloEP</id>
+                    <name>Hello Service</name>
+                    <description>Hello Service for greeting the user</description>
+
+                    <grammar>
+                        res:
+                        <group name="service">/firstmodule/helloservice</group>
+                        /
+                        <group name="value">
+                            <regex type="anything" />
+                        </group>
+                    </grammar>
+
+                    <request>
+                        <identifier>active:dpml</identifier>
+                        <argument name="operator">
+                            res:/resources/endpoints/hello.dpml
+                        </argument>
+                        <argument method="as-string" name="value">arg:value</argument>
+                    </request>
+                </endpoint>
+            </config>
+
+
+            <space>
+                <fileset>
+                    <regex>res:/resources/endpoints/.*</regex>
+                </fileset>
+                <import>
+                    <uri>urn:org:netkernel:lang:dpml</uri>
+                </import>
+                <import>
+                    <uri>urn:org:netkernel:lang:freemarker</uri>
+                </import>
+            </space>
+        </mapper>
+    </rootspace>
+
+    <rootspace name="First Module - Documentation" public="true" uri="urn:org:netkernelbook:chapter1:firstmodule:documentation">
+        <fileset>
+            <regex>res:/etc/system/(Books|Docs).xml</regex>
+        </fileset>
+
+        <fileset>
+            <regex>res:/resources/documentation/.*</regex>
+        </fileset>
+    </rootspace>
+
+    <rootspace name="First Module - Unit Test" public="true" uri="urn:org:netkernelbook:chapter1:firstmodule:unittest">
+        <fileset>
+            <regex>res:/etc/system/Tests.xml</regex>
+        </fileset>
+        <fileset>
+            <regex>res:/resources/unittest/.*</regex>
+        </fileset>
+
+        <endpoint>
+            <prototype>Limiter</prototype>
+            <grammar>
+                res:/etc/
+                <regex type="anything" />
+            </grammar>
+        </endpoint>
+
+        <import>
+            <uri>urn:org:netkernelbook:chapter1:firstmodule:services</uri>
+        </import>
+        <import>
+            <uri>urn:org:netkernel:ext:layer1</uri>
+            <private />
+        </import>
+    </rootspace>
+</module>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testlist>
+    <test name="Invoke service by identifier">
+        <request>
+            <identifier>res:/firstmodule/helloservice/Khizar</identifier>
+        </request>
+        <assert>
+            <stringEquals>Hello "Khizar" Happy new year!</stringEquals>
+        </assert>
+    </test>
+    <test name="Invoke service by endpoint">
+        <request>
+            <identifier>meta:firstmodule:helloEP</identifier>
+            <argument name="value">Khizar</argument>
+        </request>
+        <assert>
+            <stringEquals>Hello "Khizar" Happy new year!</stringEquals>
+        </assert>
+    </test>
+</testlist>

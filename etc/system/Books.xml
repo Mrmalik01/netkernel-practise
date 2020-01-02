@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<books>
+    <book>
+        <id>book:urn:org:netkernelbook:chapter1:firstmodule</id>
+        <title>First Module</title>
+        <desc>Implementation of first chapter of 'Resource-oriented computing with Netkernel</desc>
+        <toc>
+            <item id="urn:org:netkernelbook:chapter1:firstmodule:guide" />
+            <item id="urn:org:netkernelbook:chapter1:firstmodule:endpoints" />
+        </toc>
+    </book>
+</books>
